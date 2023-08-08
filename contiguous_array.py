@@ -6,20 +6,18 @@
 #space: O(1)
 class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
-        max_length = 0
-        interval_sum = 0
+        prefix_sum = {0: -1}  # sum -> i
+        max_len = 0
+        total = 0
 
-        for i in range(len(nums)):
-            interval_sum +=  nums[i]
-            delta_sum = 0
-            for j in range(i + 1, len(nums)):
-                # print(nums[i:j + 1])
-                interval_sum += nums[j]
-                delta_sum += nums[j]
-                if interval_sum == len(nums[i:j + 1]) / 2:
-                    max_length = max(len(nums[i:j + 1]), max_length)
-            interval_sum -= delta_sum
-            interval_sum -=  nums[i]
+        for i, n in enumerate(nums):
+            if n == 0:
+                total -= 1
+            if n == 1:
+                total += 1
+            if total not in prefix_sum:
+                prefix_sum[total] = i
+            else:
+                max_len = max(max_len, i - prefix_sum[total])
 
-        return max_length
-
+        return max_len

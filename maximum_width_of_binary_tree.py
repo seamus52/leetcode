@@ -9,7 +9,6 @@
 # count level width, return max count
 # time: O(n)
 # space: O(n)
-from collections import defaultdict
 class Solution:
     def widthOfBinaryTree(self, root: TreeNode) -> int:
         q = [(0, root)]
@@ -24,9 +23,9 @@ class Solution:
                 idx, node = q.pop(0)
                 nodes.append(idx)
                 if node.left:
-                    q.append((2 * idx + 1, node.left))
+                    q.append((2 * idx, node.left))
                 if node.right:
-                    q.append((2 * idx + 2, node.right))
+                    q.append((2 * idx + 1, node.right))
             # max of ans or (rightmost index - leftmost index + 1) for a level
             max_width = max(max_width, max(nodes) - min(nodes) + 1)
         
