@@ -7,17 +7,16 @@
 from math import prod
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
+        def productExceptSelf(self, nums: List[int]) -> List[int]:
         output = [0] * len(nums)
 
         if 0 in nums:
-            for i in range(len(nums)):
-                if nums[i] == 0:
-                    output[i] = prod(nums[:i]) * prod(nums[i+1:])
-                else:
-                    output[i] = 0
+            for i, n in enumerate(nums):
+                if n == 0:  # n != 0 case is covered by output initialization
+                    output[i] = prod(nums[:i] + nums[i + 1:])
         else:
-            list_product = prod(nums)
-            for i in range(len(nums)):
-                output[i] = int(list_product * (nums[i] ** -1))
-            
+            p = prod(nums)
+            for i, n in enumerate(nums):
+                output[i] = int(p * n ** -1)
+
         return output

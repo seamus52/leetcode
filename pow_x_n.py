@@ -3,13 +3,16 @@
 
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        if n == 0:
-            return 1
-        elif n == -1:
-            return 1/x
-        
-        result = self.myPow(x, n // 2)
-        if (n % 2):
-            return result * result * x
-        else:
-            return result * result
+        def pow(base, exp):
+            if exp == 0:
+                return 1
+            elif exp == -1:
+                return 1 / base
+
+            res = pow(base, exp // 2)
+            if (exp % 2) == 0:
+                return res * res
+            else: # != 0: cannot compose with power of 2 only
+                return res * res * base
+
+        return pow(x, n)
