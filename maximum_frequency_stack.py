@@ -1,23 +1,23 @@
 # Time Complexity: O(1) for both push and pop operations.
 # Space Complexity: O(N), where N is the number of elements in the FreqStack.
 
-class FreqStack(object):
+class FreqStack:
 
     def __init__(self):
-        self.freq = collections.Counter()
-        self.counts = collections.defaultdict(list) # initizalizes counts as []
+        self.freq_of_val = collections.defaultdict(int)
+        self.val_of_freq = collections.defaultdict(list)
         self.max_freq = 0
 
     def push(self, val):
-        f = self.freq[val] + 1 # in Counter, count of a missingelement is 0
-        self.freq[val] = f
+        f = self.freq_of_val[val] + 1
+        self.freq_of_val[val] = f
         self.max_freq = max(f, self.max_freq)
-        self.counts[f].append(val)
+        self.val_of_freq[f].append(val)
 
     def pop(self):
-        val = self.counts[self.max_freq].pop()
-        self.freq[val] -= 1
-        if self.counts[self.max_freq] == []:
+        val = self.val_of_freq[self.max_freq].pop()
+        self.freq_of_val[val] -= 1
+        if not self.val_of_freq[self.max_freq]:
             self.max_freq -= 1
 
         return val
