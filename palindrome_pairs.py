@@ -20,12 +20,12 @@ class Solution:
 
             # case 3)    
             for j in range(len(word)):
+                # shorter word + longer word parlindrome
                 if word[j:] in reverse_of and word[:j] == word[j-1::-1]:
-                    # shorter word + longer word parlindrome
                     pp.append([reverse_of[word[j:]], i])
                 
+                # longer word + shorter word parlindrome
                 if word[:j] in reverse_of and word[j:] == word[:j-1:-1]:
-                    # longer word + shorter word parlindrome
                     pp.append([i, reverse_of[word[:j]]])
                     
         return pp

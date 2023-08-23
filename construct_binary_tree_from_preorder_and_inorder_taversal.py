@@ -5,35 +5,41 @@
 #         self.left = left
 #         self.right = right
 
-# _study_
-# time: O(n)
-# space: O(1)
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+# time: O(N^2)
+# space O(N) - recursive stack for a highly unbalanced tree (not counting output)
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+# time: O(N^2)
+# space O(N) - recursive stack for a highly unbalanced tree (not counting output)
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        if not inorder:  # Base case for stopping recursion
+            return None
 
-        def array_to_tree(left, right):
-            nonlocal preorder_index
-            # if there are no elements to construct the tree
-            if left > right:
-                return None
+        # Find index of root node ('s value) within inorder
+        # and remove node from inorder.
+        # Front of preorder holds root's value, consume one node at a time
+        inorder_idx = inorder.index(preorder.pop(0))
+        root = TreeNode(inorder[inorder_idx])
 
-            # select the preorder_index element as the root and increment it
-            root_value = preorder[preorder_index]
-            root = TreeNode(root_value)
-            preorder_index += 1
+        # Recursively generate left subtree starting from
+        # 0th index to root index within inorder
+        root.left = self.buildTree(preorder, inorder[:inorder_idx])
 
-            # build left and right subtree
-            # excluding inorder_index_map[root_value] element because it's the root
-            root.left = array_to_tree(left, inorder_index_map[root_value] - 1)
-            root.right = array_to_tree(inorder_index_map[root_value] + 1, right)
+        # Recursively generate right subtree starting from
+        # next of root index till last index
+        root.right = self.buildTree(preorder, inorder[inorder_idx + 1:])
 
-            return root
-
-        preorder_index = 0
-
-        # build a hashmap to store value -> value index
-        inorder_index_map = {}
-        for index, value in enumerate(inorder):
-            inorder_index_map[value] = index
-
-        return array_to_tree(0, len(preorder) - 1)
+        return root
