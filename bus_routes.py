@@ -5,6 +5,7 @@
 from collections import deque
 class Solution:
     def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
+        # build graph: flatten input into station -> set of routes servicing
         station_to_route = defaultdict(set)
         for route_idx, route in enumerate(routes):
             for station in route:
@@ -12,10 +13,8 @@ class Solution:
 
         # BFS for shortest path
         cnt = -1
+        q = deque([source])
         visited = set()
-        
-        q = deque()
-        q.append(source)
         
         while q:
             cnt += 1
@@ -23,8 +22,11 @@ class Solution:
                 curr_station = q.popleft()
                 if curr_station == target:
                     return cnt
+                # for every route that services the station - 
                 for route_idx in station_to_route[curr_station]:
                     if route_idx not in visited:
-                        visited.add(route_idx) # visited optimalization
+                        # - queue all its stations
                         q.extend(routes[route_idx])
+                        visited.add(route_idx) # visited optimalization
         return -1
+
