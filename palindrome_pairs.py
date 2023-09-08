@@ -14,6 +14,7 @@ class Solution:
                 pp.append([i, reverse_of[word]])
                 
             # case 2) if one word is palindrome and the other is empty string
+            # word != "" : duplicate elimination of this edge case
             if word != "" and "" in reverse_of and word == word[::-1]:
                 pp.append([i, reverse_of[""]])
                 pp.append([reverse_of[""], i])
