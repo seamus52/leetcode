@@ -25,6 +25,10 @@ class Solution:
                 elif op == '/':
                     val = int(stack.pop() / num)
                     stack.append(val)
+
+            # no if branch for any other char type:
+            # implicitly ignore whitespace in input
+            # alternative: if branch for whitespace
             
                 op = c
                 num = 0
