@@ -25,7 +25,7 @@ class Solution:
                 operand = 0
 
             elif ch == '(':
-                # Push the result and sign on to the stack, order mattera
+                # Push the result and sign on to the stack, order matters
                 stack.append(res)
                 stack.append(sign)
                 # Reset operand and result, new evaluation begins for the new sub-expression
