@@ -1,51 +1,46 @@
 # time: O(n)
 # space: O(1)
+# time: O(n)
+# space: O(1)
 class Solution:
     def calculate(self, s: str) -> int:
-
         stack = []
-        operand = 0
-        res = 0
+        num = 0
+        acc = 0
         sign = 1
 
-        for ch in s:
-            if ch.isdigit():
+        for c in s:
+            if c.isdigit():
                 # Forming operand, since it could be more than one digit
-                operand = (operand * 10) + int(ch)
-
-            elif ch == '+':
-                res += sign * operand
+                num = (num * 10) + int(c)
+            elif c == '+':
+                acc += sign * num
                 # Save the recently encountered '+' sign
                 sign = 1
-                operand = 0
-
-            elif ch == '-':
-                res += sign * operand
+                num = 0
+            elif c == '-':
+                acc += sign * num
                 sign = -1
-                operand = 0
-
-            elif ch == '(':
+                num = 0
+            elif c == '(':
                 # Push the result and sign on to the stack, order matters
-                stack.append(res)
+                stack.append(acc)
                 stack.append(sign)
                 # Reset operand and result, new evaluation begins for the new sub-expression
                 sign = 1
-                res = 0
-
-            elif ch == ')':
+                acc = 0
+            elif c == ')':
                 # Evaluate the expression to the left with result, sign and operand
-                res += sign * operand
+                acc += sign * num
                 # ')' marks end of expression within a set of parenthesis
                 # Its result is multiplied with sign on top of stack
                 # as stack.pop() is the sign before the parenthesis
-                res *= stack.pop() # stack pop 1, sign
-
+                acc *= stack.pop() # stack pop 1, sign
                 # Then add to the next operand on the top.
                 # as stack.pop() is the result calculated before this parenthesis
                 # (operand on stack) + (sign on stack * (result from parenthesis))
-                res += stack.pop() # stack pop 2, operand
-
+                acc += stack.pop() # stack pop 2, operand
                 # Reset the operand
-                operand = 0
+                num = 0
 
-        return res + sign * operand
+        return acc + (sign * num)
