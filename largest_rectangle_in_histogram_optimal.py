@@ -5,10 +5,10 @@
 # y coordinate represented by heights[x]
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
-        # init x coordinate
+        # init x coordinate as -1
         stack = [-1]
         
-        # add zero as dummy tail 
+        # add zero as dummy tail: prevents out of index situtuation for first pop
         heights.append(0)
         
         # area of rectangle

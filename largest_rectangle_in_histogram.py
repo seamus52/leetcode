@@ -7,7 +7,7 @@ class Solution:
 
         for i in range(len(heights)):
             for j in range(i, len(heights)):
-                min_height = min(heights[i:j + 1])
+                min_height = min(heights[i:j + 1])  # height between indexes can be lower than at either index
                 area = min_height * (abs(i - j) + 1)
                 max_area = max(area, max_area)
 
