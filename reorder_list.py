@@ -5,28 +5,35 @@
 #         self.next = next
 # time: O(n)
 # space: O(n)
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+from collections import deque
 class Solution:
+    """
+    Do not return anything, modify head in-place instead.
+    """
     def reorderList(self, head: Optional[ListNode]) -> None:
-        """
-        Do not return anything, modify head in-place instead.
-        """
         q = deque()
 
         curr = head
-        while curr:
-            q.append(curr)
-            curr = curr.next
+        while head:
+            q.append(head)
+            head = head.next
+            q[-1].next = None
 
-        dummy_head = TreeNode(None)
-        curr = dummy_head
-        while q:
-            curr.next = q.popleft()
-            if q:
-                curr.next.next = q.pop()
-                curr.next.next.next = None
-                curr = curr.next.next
-            else:
-                curr.next.next = None
-                curr = curr.next
+        dummy_head = ListNode()
+        tail = dummy_head
+        while len(q) > 1:
+            tail.next = q.popleft()
+            tail = tail.next
+            tail.next = q.pop()
+            tail = tail.next
+
+        if q:
+            tail.next = q.pop()
 
         return dummy_head.next
+

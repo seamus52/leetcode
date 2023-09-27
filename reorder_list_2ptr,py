@@ -1,0 +1,33 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+from collections import deque
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        # find mid using 2 ptr
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        mid = slow.next
+        # severe the linked list on partition boundary
+        slow.next = None
+
+        # reverse second partition
+        prev, curr = None, mid
+        while curr:
+            curr.next, prev, curr = prev, curr, curr.next
+        head2 = prev
+
+        # merge
+        p1 = head
+        p2 = head2
+        while p2:
+            p1_next, p2_next = p1.next, p2.next
+            p1.next = p2
+            p2.next = p1_next
+            p1, p2 = p1_next, p2_next
+            

@@ -6,25 +6,30 @@
 
 # time: O(n)
 # space: O(1)
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        dummy_head = ListNode(0, head)
+        if not head or not head.next:
+            return head
+
+        dummy_head = ListNode()
         prev = dummy_head
-        
-        while head and head.next: # this is the key: no next.next!
-            first = head
-            second = head.next
-            remaining = second.next
+        curr = head
 
-            # swap
-            # no need to save remaining: second.next is remaining
-            # variable added for readability
-            prev.next = second
-            first.next = remaining
+        while curr and curr.next:
+            first = curr
+            second = curr.next
+            rest = second.next
+
+            first.next = rest
             second.next = first
+            prev.next = second
 
-            # reinitialize for next cycle
             prev = first
-            head = first.next
+            curr = second.next.next
 
         return dummy_head.next
