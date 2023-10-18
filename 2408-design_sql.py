@@ -1,3 +1,6 @@
+# a better implementation would use dict of dict
+# a simpler implementation would be no delete and every other function 
+# turned into 1-liner
 class SQL:
 
     def __init__(self, names: List[str], columns: List[int]):
