@@ -1,6 +1,3 @@
-#implemented, which is arguable as it is absolutely not a prefix tree
-#time: O(1) assuming no collisions
-#space: O(n)
 class Trie:
 
     def __init__(self):
@@ -12,6 +9,7 @@ class Trie:
         self.words.add(word)
         self.prefixes.add(word)
         for i in range(len(word)):
+            # print(i, word, word[:i])
             self.prefixes.add(word[:i])
 
     def search(self, word: str) -> bool:
