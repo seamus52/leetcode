@@ -31,10 +31,6 @@ class Solution:
             black.add(node)
             collector.append(node)
 
-        # edge cases: no prereq
-        if len(prerequisites) == 0:
-            return [c for c in range(numCourses)]
-       
         # collect
         graph = build_graph(prerequisites, numCourses)
         collector = []
