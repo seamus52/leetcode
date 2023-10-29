@@ -17,9 +17,10 @@ class Solution:
         side = perimeter // 4
         sides = [0] * 4
 
-        if side * 4 != perimeter:
+        if side * 4 != perimeter:  # 1. early termination for impossible case
             return False
         
+        # facilitates 2. early termination for impossible case
         matchsticks.sort(reverse=True)
         
-        return dfs(0)
+        return backtrack(0)
