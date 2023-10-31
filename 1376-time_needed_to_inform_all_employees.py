@@ -8,12 +8,14 @@ class Solution:
                 d[e].add(i)
 
         t = 0
-        q = deque([(headID, 0)])
+        q = deque([(headID, 0)])  # informing the top manager takes 0 time
         while q:
-            node, time = q.popleft()
+            parent, time = q.popleft()
             t = max(t, time)
-            for nbr_node in d[node]:
-                q.append((nbr_node, time + informTime[node]))
+            for child in d[node]:
+                # for each level in the graph, the longest notification time
+                # will decide the overall min. notification time
+                q.append((child, time + informTime[parent]))
             
         return t
 
