@@ -1,7 +1,7 @@
 class Solution:
     def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
         cap_at_ts = []
-        for trip in trips:
+        for trip in trips: # split trip triplets into get (in/get out, stop) tuples
             cap_at_ts.append([trip[1], trip[0]])  # # of passengers get on at ts
             cap_at_ts.append([trip[2], -trip[0]]) # # of passengers get off at ts
 
