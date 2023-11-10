@@ -6,6 +6,8 @@ class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         def build_graph(edge_list, num_edges):
             graph = {}
+            # solution relies on natural order (for key in graph style)
+            # graph will be traversed from node 0
             for e in range(num_edges):
                 graph[e] = set()
             for (a, b) in prerequisites:
