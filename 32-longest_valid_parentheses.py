@@ -4,7 +4,7 @@ class Solution:
     def longestValidParentheses(self, s: str) -> int:
         # stack, used to record index of parenthesis
         # initialized to -1 as dummy head for valid parentheses length computation
-        stack = [-1]
+        stack = [-1] # for case like: "()()()", otherwise the first pair of brackets would not be detected
         max_length = 0
         
 		# linear scan each index and character in input string s
