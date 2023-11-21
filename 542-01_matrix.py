@@ -31,6 +31,7 @@ class Solution:
             for nr, nc in neighbors(r, c):
                 if dist[nr][nc] > dist[r][c] + 1:
                     dist[nr][nc] = dist[r][c] + 1
+                    # put back changed cell for reevaluation from other cells
                     q.append((nr, nc))
 
         return dist
