@@ -2,12 +2,8 @@
 # space: O(1)
 class Solution:
     def numberOfMatches(self, n: int) -> int:
-        if n < 2:
-            return 0
-
-        if n == 2:
-            return 1
-
+        # simpler implementtion using logic:
+        # return n - 1
         s = 0
         while n > 1:
             if n % 2 == 0:
