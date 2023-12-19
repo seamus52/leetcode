@@ -21,5 +21,8 @@ class Solution:
             # advance the current pointer to the first remaining node in the list
             head = rest
 
+            # or, expressed in a more Pyhonic way:
+            # curr.next, prev, curr = prev, curr, curr.next
+
         # returning prev, as head will be None at this point
         return prev

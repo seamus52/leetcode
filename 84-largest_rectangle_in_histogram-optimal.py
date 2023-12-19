@@ -7,10 +7,8 @@ class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
         # init x coordinate as -1
         stack = [-1]
-        
-        # add zero as dummy tail: prevents out of index situtuation for first pop
+        # add zero as dummy tail: prevents out of index situation for first pop
         heights.append(0)
-        
         # area of rectangle
         max_rect = 0
         
