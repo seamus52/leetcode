@@ -17,7 +17,7 @@ class Solution:
             r_candidate = r + root.val
             full_candidate = l + root.val + r
 
-            max_sum = max(max_sum, root.val, l_candidate, r_candidate, full_candidate)
+            max_sum = max(max_sum, root.val, full_candidate)
 
             return root.val + max(r, l)
 
