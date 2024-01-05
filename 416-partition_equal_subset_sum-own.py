@@ -1,3 +1,5 @@
+# time: O(m*n)
+# space: O(m*n)
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
         @lru_cache(maxsize=None)
