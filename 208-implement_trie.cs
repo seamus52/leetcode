@@ -26,7 +26,8 @@ public class Trie
         var node = this.root;
         foreach(char c in word)
         {
-            if (!node.children.ContainsKey(c)) {
+            if (!node.children.ContainsKey(c))
+            {
                 node.children[c] = new TrieNode(c);
             }
             node = node.children[c];
@@ -39,7 +40,8 @@ public class Trie
         var node = this.root;
         foreach(char c in word)
         {
-            if (!node.children.ContainsKey(c)) {
+            if (!node.children.ContainsKey(c))
+            {
                 return false;
             }
             node = node.children[c];
@@ -53,7 +55,8 @@ public class Trie
         var node = this.root;
         foreach(char c in prefix)
         {
-            if (!node.children.ContainsKey(c)) {
+            if (!node.children.ContainsKey(c))
+            {
                 return false;
             }
             node = node.children[c];
