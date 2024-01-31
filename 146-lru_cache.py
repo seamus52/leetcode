@@ -14,9 +14,8 @@ class LRUCache:
             self.data[key] = value # reinsert at front
             # print(f"state after GET {key}: {self.data}")
             return self.data[key]
-        else:
-            # print(f"state after GET {key}: {self.data}")
-            return -1
+        # print(f"state after GET {key}: {self.data}")
+        return -1
 
     def put(self, key: int, value: int) -> None:
         if key in self.data:
